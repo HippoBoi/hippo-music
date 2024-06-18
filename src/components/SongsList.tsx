@@ -2,6 +2,7 @@ import "./SongList.css";
 import astray from "../assets/audios/astrayinst.mp3";
 import spacecart from "../assets/audios/spacecart.mp3";
 import endstats from "../assets/audios/endstats.mp3";
+import AudioPlayer from "./AudioPlayer";
 
 export interface Song {
     id: number;
@@ -33,11 +34,7 @@ const SongsList = () => {
         <div className="list">
             {songs.map((song) => (
                 <div className="listItem" key={song.id}>
-                    <h2>{song.name}</h2>
-                    <audio controls>
-                        <source src={song.URL} type="audio/mp3" />
-                        No se pudo reproducir audio en este navegador.
-                    </audio>
+                    <AudioPlayer song={song} />
                 </div>
             ))}
         </div>
