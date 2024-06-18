@@ -6,22 +6,56 @@
 }
 
 .audio-player button {
-    background-color: #af4c59; /* Verde */
+    background-color: #77334d; /* Verde */
     border: none;
     color: white;
-    padding: 10px 20px;
+    padding: 2px 5px;
+    width: 60px;
+    max-width: 60px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 24px;
-    margin: 10px 2px;
+    margin: 5px 4px;
     cursor: pointer;
     border-radius: 5px;
 }
 
 .audio-player button:hover {
     font-size: 26px;
-    background-color: #802424;
+    background-color: rgb(187, 107, 131);
     transition: ease-out;
-    transition-duration: 0.5s;
+    transition-duration: 0.25s;
+}
+
+.progress-bar-container {
+    flex-grow: 1;
+    width: 90%;
+    height: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.progress-bar {
+    height: 100%;
+    background-color: #6a4caf;
+    width: 0%;
+    transition: width 0.1s;
+}
+
+.play-image {
+    margin-top: 5px;
+    margin-right: 13px;
+}
+
+.pause-image {
+    margin-top: 5px;
+    margin-right: 3px;
+}
+
+.time-container {
+    color: white; /* Asegúrate de que el texto sea visible */
+    pointer-events: none; /* Asegura que el texto no interfiera con los eventos de clic */
 }
