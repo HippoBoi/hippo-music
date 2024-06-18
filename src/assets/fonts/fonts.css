@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'jupiterc';
+    src: url('./jupiterc.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: "dpcomic";
+    src: url("./dpcomic.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}

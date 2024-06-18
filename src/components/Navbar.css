@@ -1,0 +1,13 @@
+.navbar {
+    font-family: "jupiterc", sans-serif;
+    font-size: 40px;
+    position: fixed;
+    top: 0;
+    right: 0%;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 5px;
+    background-color: rgb(61, 23, 41);
+}
