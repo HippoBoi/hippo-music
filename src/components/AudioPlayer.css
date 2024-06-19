@@ -1,8 +1,22 @@
 .audio-player {
     font-family: "dpcomic";
+    font-size: 20px;
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow: hidden;
+    width: 100%;
+    transition: width 0.5s ease-in-out;
+    transition: font-size 0.5s ease-in-out;
+}
+
+.audio-player.mobile {
+    font-size: 18px;
+}
+
+.audio-player.expanded.mobile {
+    font-size: 11px;
 }
 
 .audio-player button {
@@ -62,4 +76,17 @@
 .time-container {
     color: white; /* Asegúrate de que el texto sea visible */
     pointer-events: none; /* Asegura que el texto no interfiera con los eventos de clic */
+}
+
+.description {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    transition: max-height 0.3s ease-in-out;
+    overflow: hidden;
+    max-height: 0;
+}
+
+.audio-player.expanded .description {
+    max-height: 200px;
 }

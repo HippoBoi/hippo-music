@@ -10,6 +10,8 @@ interface Props {
 
 const AudioPlayer = ({ song }: Props) => {
     const audioRef = useRef<HTMLAudioElement>(null);
+    const [expanded, setExpanded] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
     const [isPlaying, setPlaying] = useState(false);
     const [progress, setProgress] = useState(0);
     const [songTime, setSongTime] = useState(0);
@@ -21,6 +23,7 @@ const AudioPlayer = ({ song }: Props) => {
             if (audioRef.current.paused) {
                 audioRef.current.play();
                 setPlaying(true);
+                setExpanded(true);
                 setButtonImg(pauseButton);
             } 
             else {
@@ -70,9 +73,21 @@ const AudioPlayer = ({ song }: Props) => {
             };
         }
     }, []);
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+
+        handleResize();
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    })
 
     return (
-        <div className="audio-player">
+        <div className={`audio-player ${expanded ? "expanded" : ""} ${isMobile ? "mobile" : ""}`}>
             <h2>{song.name}</h2>
 
             <audio ref={audioRef}>
@@ -98,6 +113,10 @@ const AudioPlayer = ({ song }: Props) => {
                 <span>
                     {formatTime(songTime) + " / " + formatTime(songLength)}
                 </span>
+            </div>
+
+            <div className='description'>
+                <p>{song.description}</p>
             </div>
         </div>
     );
