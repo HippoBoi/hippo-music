@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Song } from './SongsList';
 import playButton from "../assets/images/playbutton.png";
 import pauseButton from "../assets/images/pausebutton.png";
@@ -42,6 +42,16 @@ const AudioPlayer = ({ song }: Props) => {
         setPlaying(false);
         setButtonImg(playButton);
     }
+    const onBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (audioRef.current) {
+            const progressContainer = event.currentTarget;
+            const rect = progressContainer.getBoundingClientRect();
+            const offsetX = event.clientX - rect.left;
+            const newProgress = (offsetX / rect.width) * audioRef.current.duration;
+            audioRef.current.currentTime = newProgress;
+            updateProgress();
+        }
+    }
 
     const formatTime = (time: number) => {
         const minutes = Math.floor(time / 60);
@@ -77,7 +87,7 @@ const AudioPlayer = ({ song }: Props) => {
                     src={buttonImg} />
             </button>
 
-            <div className='progress-bar-container'>
+            <div className='progress-bar-container' onClick={onBarClick}>
                 <div 
                     className="progress-bar"
                     style={{ width: `${progress}%` }}>

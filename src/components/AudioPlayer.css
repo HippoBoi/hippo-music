@@ -38,6 +38,10 @@
     margin-left: 10px;
 }
 
+.progress-bar-container:hover {
+    cursor: pointer;
+}
+
 .progress-bar {
     height: 100%;
     background-color: #6a4caf;
