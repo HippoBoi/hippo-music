@@ -4,6 +4,7 @@ import spacecart from "../assets/audios/spacecart.mp3";
 import endstats from "../assets/audios/endstats.mp3";
 import AudioPlayer from "./AudioPlayer";
 import SearchBar from "./SearchBar";
+import { useState } from "react";
 
 export interface Song {
     id: number;
@@ -14,6 +15,7 @@ export interface Song {
 }
 
 const SongsList = () => {
+    const [search, setSearch] = useState("");
     const songs: Song[] = [{
             id: 0,
             name: "Astray (Instrumental)", 
@@ -34,11 +36,17 @@ const SongsList = () => {
             URL: endstats
         }
     ];
+    const [songList, setSongList] = useState<Song[]>(songs);
+
+    const changeSearch = (text: string) => {
+        setSearch(text);
+        setSongList(songs.filter(song => song.name.toLowerCase().includes(text)));
+    }
 
     return (
         <div className="list">
-            <SearchBar />
-            {songs.map((song) => (
+            <SearchBar onSearch={changeSearch} />
+            {songList.map((song) => (
                 <div className="listItem" key={song.id}>
                     <AudioPlayer song={song} />
                 </div>

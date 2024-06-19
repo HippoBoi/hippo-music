@@ -1,0 +1,13 @@
+.search-bar {
+    padding: 5px;
+    font-family: "dpcomic";
+    font-size: 20px;
+    height: 100%;
+    width: 90%;
+    border-radius: 25px;
+    background-color: rgb(34, 16, 30);
+}
+
+.search-bar:hover {
+    background-color: rgb(24, 14, 27);
+}
