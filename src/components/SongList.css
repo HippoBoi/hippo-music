@@ -5,10 +5,17 @@
 .listItem {
     font-family: "dpcomic";
     font-size: 20px;
+    color: rgba(255, 255, 255, 1);
     background-color: rgb(27, 14, 31);
-    width: 50vw;
+    width: 45vw;
     margin-top: 20px;
-    padding-top: 30px;
-    padding-bottom: 30px;
+    padding: 30px;
     border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.listItem:hover {
+    background-color: rgb(38, 18, 34);
+    transition: ease-out;
+    transition-duration: 1s;
 }
