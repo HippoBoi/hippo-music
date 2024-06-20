@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Song } from './SongsList';
 import playButton from "../assets/images/playbutton.png";
 import pauseButton from "../assets/images/pausebutton.png";
+import audioIcon from "../assets/images/audio.png";
 import "./AudioPlayer.css";
 
 interface Props {
@@ -16,6 +17,7 @@ const AudioPlayer = ({ song }: Props) => {
     const [progress, setProgress] = useState(0);
     const [songTime, setSongTime] = useState(0);
     const [songLength, setSongLength] = useState(0);
+    const [volume, setVolume] = useState(0);
     const [buttonImg, setButtonImg] = useState(playButton);
 
     const togglePlay = () => {
@@ -39,6 +41,7 @@ const AudioPlayer = ({ song }: Props) => {
             setProgress((audioRef.current.currentTime / audioRef.current.duration) * 100);
             setSongTime(audioRef.current.currentTime);
             setSongLength(audioRef.current.duration);
+            setVolume((audioRef.current.volume / 1) * 100);
         }
     };
     const onSongEnd = () => {
@@ -52,6 +55,17 @@ const AudioPlayer = ({ song }: Props) => {
             const offsetX = event.clientX - rect.left;
             const newProgress = (offsetX / rect.width) * audioRef.current.duration;
             audioRef.current.currentTime = newProgress;
+            updateProgress();
+        }
+    }
+    const onVolumeClick = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (audioRef.current) {
+            const volumeContainer = event.currentTarget;
+            const rect = volumeContainer.getBoundingClientRect();
+            const offsetX = event.clientX - rect.left;
+            const newVolume = (offsetX / rect.width) * 1;
+            audioRef.current.volume = newVolume;
+            console.log(newVolume);
             updateProgress();
         }
     }
@@ -113,6 +127,20 @@ const AudioPlayer = ({ song }: Props) => {
                 <span>
                     {formatTime(songTime) + " / " + formatTime(songLength)}
                 </span>
+            </div>
+
+            <div className='volume'>
+                <img 
+                    className='audio-icon'
+                    src={audioIcon}
+                    alt="Audio Icon" />
+
+                <div className='volume-container' onClick={onVolumeClick}>
+                    <div 
+                        className="volume-bar"
+                        style={{ width: `${volume}%` }}>
+                    </div>
+                </div>
             </div>
 
             <div className='description'>
