@@ -116,7 +116,9 @@ const AudioPlayer = ({ song }: Props) => {
             </div>
 
             <div className='description'>
+                <p className='description-title'>Description</p>
                 <p>{song.description}</p>
+                <button onClick={() => setExpanded(false)}>Close</button>
             </div>
         </div>
     );
