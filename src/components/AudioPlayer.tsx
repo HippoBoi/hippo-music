@@ -3,6 +3,7 @@ import { Song } from './SongsList';
 import playButton from "../assets/images/playbutton.png";
 import pauseButton from "../assets/images/pausebutton.png";
 import audioIcon from "../assets/images/audio.png";
+import playBW from "../assets/images/playb&w.webp";
 import "./AudioPlayer.css";
 
 interface Props {
@@ -116,31 +117,38 @@ const AudioPlayer = ({ song }: Props) => {
                     src={buttonImg} />
             </button>
 
-            <div className='progress-bar-container' onClick={onBarClick}>
-                <div 
-                    className="progress-bar"
-                    style={{ width: `${progress}%` }}>
+            <div className='progress'>
+                <img 
+                    className='play-icon'
+                    src={playBW}
+                    alt="Audio Icon" />
+                
+                <div className='progress-bar-container' onClick={onBarClick}>
+                    <div 
+                        className="progress-bar"
+                        style={{ width: `${progress}%` }}>
+                    </div>
                 </div>
+
+                <div className='volume'>
+                    <img 
+                        className='audio-icon'
+                        src={audioIcon}
+                        alt="Audio Icon" />
+
+                    <div className='volume-container' onClick={onVolumeClick}>
+                        <div 
+                            className="volume-bar"
+                            style={{ width: `${volume}%` }}>
+                        </div>
+                </div>
+            </div>
             </div>
 
             <div className='time-container'>
                 <span>
                     {formatTime(songTime) + " / " + formatTime(songLength)}
                 </span>
-            </div>
-
-            <div className='volume'>
-                <img 
-                    className='audio-icon'
-                    src={audioIcon}
-                    alt="Audio Icon" />
-
-                <div className='volume-container' onClick={onVolumeClick}>
-                    <div 
-                        className="volume-bar"
-                        style={{ width: `${volume}%` }}>
-                    </div>
-                </div>
             </div>
 
             <div className='description'>

@@ -42,6 +42,15 @@
     transition-duration: 0.25s;
 }
 
+.progress {
+    width: 100%;
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
 .progress-bar-container {
     flex-grow: 1;
     width: 90%;
@@ -64,15 +73,22 @@
 }
 
 .volume {
-    width: 100%;
-    margin-bottom: 20px;
+    width: 40%;
+    margin-top: 5px;
+    margin-left: 20px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
 }
 
+.play-icon {
+    width: 20px;
+    height: 20px;
+}
+
 .audio-icon {
-    width: 25px;
-    height: 25px;
+    width: 20px;
+    height: 20px;
 }
 
 .volume-container {
@@ -80,7 +96,7 @@
     margin-top: 5px;
     margin-bottom: 1%;
     align-items: start;
-    width: 25%;
+    width: 55%;
     height: 12px;
     background-color: #ddd;
     border-radius: 5px;
