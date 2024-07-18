@@ -45,7 +45,7 @@ const SongsList = () => {
             author: "HippoBoi",
             description: "I composed this song for a PvZ fangame I made. I'm pretty proud of it! I've always liked desert-like music. No idea how it's officialy named tho.",
             URL: sandtomb,
-            BPM: 148
+            BPM: 90
         }
     ];
     const [songList, setSongList] = useState<Song[]>(songs);

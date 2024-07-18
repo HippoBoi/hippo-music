@@ -1,12 +1,14 @@
-import hippo from "../assets/images/logo2.webp";
+import hippo from "../assets/images/hippoBig.webp";
 import "./Navbar.css";
 
 const NavBar = () => {
     return (
         <div className="navbar">
-            Hippo-Music
+            <div className="navbar-text">Hippo-Music</div>
+
+            <img className="hippo-icon" src={hippo} />
         </div>
-    )
+    );
 }
 
 export default NavBar

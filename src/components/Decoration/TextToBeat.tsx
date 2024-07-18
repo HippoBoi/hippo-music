@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import "./Beat.css"
 
 interface Props {
@@ -8,19 +8,27 @@ interface Props {
 
 const TextToBeat = ({ text, BPM }: Props) => {
     const [scale, setScale] = useState(1);
+    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null); // store interval value
     
     useEffect(() => {
-        if (BPM <= 0) return;
-        
-        const beatTime = (60 / BPM) * 1000;
+        if (BPM > 0) {
+            const beatTime = (60 / BPM) * 1000;
+            const beatAnim = () => {
+                setScale((prevScale) => prevScale === 1 ? 1.1 : 1);
+            };
 
-        const beatAnim = () => {
-            setScale((prevScale) => prevScale === 1 ? 1.25 : 1);
+            intervalRef.current = setInterval(beatAnim, beatTime);
+        }
+        else if (intervalRef.current) {
+            console.log("song paused")
+            clearInterval(intervalRef.current);
+            intervalRef.current = null;
+        }
+
+        return () => {
+            if (intervalRef.current)
+                clearInterval(intervalRef.current);
         };
-
-        const beatInterval = setInterval(beatAnim, beatTime);
-
-        return () => clearInterval(beatInterval);
     }, [BPM])
     
     return (
