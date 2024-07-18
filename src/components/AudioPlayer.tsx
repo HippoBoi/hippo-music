@@ -5,12 +5,15 @@ import pauseButton from "../assets/images/pausebutton.png";
 import audioIcon from "../assets/images/audio.png";
 import playBW from "../assets/images/playb&w.webp";
 import "./AudioPlayer.css";
+import BeatSync from './Decoration/BeatSync';
+import TextToBeat from './Decoration/TextToBeat';
 
 interface Props {
     song: Song;
 }
 
 const AudioPlayer = ({ song }: Props) => {
+    const [currentBPM, setBPM] = useState(0);
     const audioRef = useRef<HTMLAudioElement>(null);
     const [expanded, setExpanded] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
@@ -25,12 +28,14 @@ const AudioPlayer = ({ song }: Props) => {
         if (audioRef.current) {
             if (audioRef.current.paused) {
                 audioRef.current.play();
+                setBPM(song.BPM);
                 setPlaying(true);
                 setExpanded(true);
                 setButtonImg(pauseButton);
             } 
             else {
                 audioRef.current.pause();
+                setBPM(0); // not exactly 0 'cause would produce division by 0
                 setPlaying(false);
                 setButtonImg(playButton);
             }
@@ -47,6 +52,7 @@ const AudioPlayer = ({ song }: Props) => {
     };
     const onSongEnd = () => {
         setPlaying(false);
+        setBPM(0);
         setButtonImg(playButton);
     }
     const onBarClick = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -103,7 +109,7 @@ const AudioPlayer = ({ song }: Props) => {
 
     return (
         <div className={`audio-player ${expanded ? "expanded" : ""} ${isMobile ? "mobile" : ""}`}>
-            <h2>{song.name}</h2>
+            <TextToBeat text={song.name} BPM={currentBPM} />
 
             <audio ref={audioRef}>
                 <source src={song.URL} type="audio/mp3" />
@@ -150,6 +156,12 @@ const AudioPlayer = ({ song }: Props) => {
                     {formatTime(songTime) + " / " + formatTime(songLength)}
                 </span>
             </div>
+            <div className='transparent-text'>
+                <span>
+                    {`BPM: ${song.BPM}`}
+                </span>
+            </div>
+
 
             <div className='description'>
                 <p className='description-title'>Description</p>

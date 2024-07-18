@@ -1,0 +1,16 @@
+.beat-container {
+    display: inline-block;
+    padding: 20px;
+    background-color: #8e44ad;
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    transition: transform 0.05s ease-in-out; /* Transición suave */
+}
+
+.text-beat {
+    font-family: "dpcomic";
+    color: white;
+    transition: transform 0.15s ease-out; /* Transición suave */
+}

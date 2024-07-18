@@ -6,6 +6,7 @@ import sandtomb from "../assets/audios/sandtomb.mp3";
 import AudioPlayer from "./AudioPlayer";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
+import BeatSync from "./Decoration/BeatSync";
 
 export interface Song {
     id: number;
@@ -13,6 +14,7 @@ export interface Song {
     author: string;
     description: string;
     URL: string;
+    BPM: number;
 }
 
 const SongsList = () => {
@@ -21,25 +23,29 @@ const SongsList = () => {
             name: "Astray (Instrumental)", 
             author: "HippoBoi",
             description: "This is the third iteration of this song I've made. The first one was composed for a FNF mod I've been contributing to for the last two years lol.", 
-            URL: astray
+            URL: astray,
+            BPM: 125
         }, {
             id: 1,
             name: "Space Cart",
             author: "HippoBoi",
             description: "This song was composed for a game I'm developing with my girlfriend helping me with some designs. The game is heavily inspired by the Metroid Prime series, however this song is supposed to play on a minigame of some sort.",
-            URL: spacecart
+            URL: spacecart,
+            BPM: 110
         }, {
             id: 2,
             name: "End Stats",
             author: "HippoBoi",
             description: "I often forget I made this song because it was only used for a Roblox game I made a while ago. The song is pretty hidden too, as it plays literally at the end of it.",
-            URL: endstats
+            URL: endstats,
+            BPM: 180
         }, {
             id: 3,
             name: "Sand Tomb",
             author: "HippoBoi",
             description: "I composed this song for a PvZ fangame I made. I'm pretty proud of it! I've always liked desert-like music. No idea how it's officialy named tho.",
-            URL: sandtomb
+            URL: sandtomb,
+            BPM: 148
         }
     ];
     const [songList, setSongList] = useState<Song[]>(songs);
