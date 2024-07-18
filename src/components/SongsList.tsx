@@ -51,7 +51,7 @@ const SongsList = () => {
     const [songList, setSongList] = useState<Song[]>(songs);
 
     const changeSearch = (text: string) => {
-        setSongList(songs.filter(song => song.name.toLowerCase().includes(text)));
+        setSongList(songs.filter(song => song.name.toLowerCase().includes(text.toLowerCase())));
     }
 
     return (
